@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroLearn — Smart Learning for Every Child</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="brand-icon">🧠</span>
+    <span class="brand-text">NeuroLearn</span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" data-page="home">🏠 Home</button>
+    <button class="nav-btn" data-page="dashboard">📊 Dashboard</button>
+    <button class="nav-btn" data-page="mood">😊 Mood Check</button>
+    <button class="nav-btn" data-page="activities">🎮 Activities</button>
+    <button class="nav-btn" data-page="communicate">💬 Communicate</button>
+    <button class="nav-btn" data-page="parent">👨‍👩‍👧 Parent Panel</button>
+  </div>
+  <div class="nav-avatar" id="nav-avatar">👤 Guest</div>
+</nav>
+
+<!-- ══ PAGES ═══════════════════════════════════════════════════════════════ -->
+<main id="app">
+
+  <!-- ── HOME ─────────────────────────────────────────────────────────────── -->
+  <section id="page-home" class="page active">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">✨ Learning Made Fun</div>
+        <h1 class="hero-title">Welcome to<br><span class="gradient-text">NeuroLearn</span></h1>
+        <p class="hero-subtitle">A safe, joyful space where every child learns, grows, and expresses themselves freely.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('mood')">Check My Mood 😊</button>
+          <button class="btn-outline" onclick="showPage('activities')">Start Learning 🎮</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-pill"><span class="stat-num" id="home-moods">—</span><span>Moods Tracked</span></div>
+          <div class="stat-pill"><span class="stat-num" id="home-activities">—</span><span>Activities Done</span></div>
+          <div class="stat-pill"><span class="stat-num" id="home-streak">🔥 3</span><span>Day Streak</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-cards">
+          <div class="float-card fc1">😊 <span>Happy Today!</span></div>
+          <div class="float-card fc2">🎯 <span>90% Score</span></div>
+          <div class="float-card fc3">🌟 <span>Level 5</span></div>
+          <div class="float-card fc4">📚 <span>8 Activities</span></div>
+        </div>
+        <div class="hero-blob"></div>
+        <div class="hero-emoji-ring">
+          <span>😊</span><span>🎨</span><span>🧩</span><span>📚</span>
+          <span>🎵</span><span>🌈</span><span>⭐</span><span>🎯</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" onclick="showPage('mood')">
+        <div class="fc-icon" style="background:#FFE5B4">😊</div>
+        <h3>Mood Detection</h3>
+        <p>Detect emotions from your photo and get personalized activity suggestions</p>
+        <span class="fc-arrow">→</span>
+      </div>
+      <div class="feature-card" onclick="showPage('dashboard')">
+        <div class="fc-icon" style="background:#E5F3FF">📊</div>
+        <h3>Dashboard</h3>
+        <p>View mood history, activity scores, and progress charts at a glance</p>
+        <span class="fc-arrow">→</span>
+      </div>
+      <div class="feature-card" onclick="showPage('activities')">
+        <div class="fc-icon" style="background:#E8F5E9">🎮</div>
+        <h3>Fun Activities</h3>
+        <p>Color matching, shape recognition, and quiz games designed for kids</p>
+        <span class="fc-arrow">→</span>
+      </div>
+      <div class="feature-card" onclick="showPage('communicate')">
+        <div class="fc-icon" style="background:#F3E5F5">💬</div>
+        <h3>Communicate</h3>
+        <p>Express yourself with one tap — voice-enabled communication cards</p>
+        <span class="fc-arrow">→</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DASHBOARD ─────────────────────────────────────────────────────────── -->
+  <section id="page-dashboard" class="page">
+    <div class="page-header">
+      <h2>📊 My Dashboard</h2>
+      <p>Track your mood journey and learning progress</p>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-row">
+      <div class="kpi-card kpi-mood">
+        <div class="kpi-icon">😊</div>
+        <div class="kpi-info">
+          <div class="kpi-label">Today's Mood</div>
+          <div class="kpi-value" id="kpi-today-mood">—</div>
+        </div>
+      </div>
+      <div class="kpi-card kpi-score">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-info">
+          <div class="kpi-label">Avg Score</div>
+          <div class="kpi-value" id="kpi-avg-score">—%</div>
+        </div>
+      </div>
+      <div class="kpi-card kpi-activities">
+        <div class="kpi-icon">🎮</div>
+        <div class="kpi-info">
+          <div class="kpi-label">Activities</div>
+          <div class="kpi-value" id="kpi-total-activities">—</div>
+        </div>
+      </div>
+      <div class="kpi-card kpi-streak">
+        <div class="kpi-icon">🔥</div>
+        <div class="kpi-info">
+          <div class="kpi-label">Best Score</div>
+          <div class="kpi-value" id="kpi-best-score">—%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="charts-row">
+      <div class="chart-card chart-wide">
+        <div class="chart-header">
+          <h3>📈 Mood History</h3>
+          <div class="chart-legend" id="mood-legend"></div>
+        </div>
+        <canvas id="moodLineChart" height="200"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header"><h3>🥧 Mood Distribution</h3></div>
+        <canvas id="moodPieChart" height="220"></canvas>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-header"><h3>🎮 Activity Scores</h3></div>
+        <canvas id="activityBarChart" height="220"></canvas>
+      </div>
+      <div class="chart-card chart-wide">
+        <div class="chart-header"><h3>⏱️ Recent Activity Timeline</h3></div>
+        <div class="timeline" id="timeline-list"></div>
+      </div>
+    </div>
+
+    <!-- Mood History Table -->
+    <div class="table-card">
+      <div class="chart-header">
+        <h3>📋 Full Mood Log</h3>
+        <button class="btn-sm" onclick="loadDashboard()">🔄 Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="mood-table">
+          <thead><tr><th>Date & Time</th><th>Emotion</th><th>Confidence</th><th>Suggestion</th></tr></thead>
+          <tbody id="mood-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MOOD DETECTION ─────────────────────────────────────────────────────── -->
+  <section id="page-mood" class="page">
+    <div class="page-header">
+      <h2>😊 Mood Detection</h2>
+      <p>Upload a photo or use your webcam to detect your emotion</p>
+    </div>
+
+    <div class="mood-layout">
+      <!-- Input area -->
+      <div class="mood-input-card">
+        <div class="upload-zone" id="upload-zone">
+          <div class="upload-preview" id="upload-preview">
+            <div class="upload-placeholder">
+              <span class="upload-icon">📷</span>
+              <p>Drag & drop an image here<br>or click to browse</p>
+              <small>JPG, PNG, WEBP supported</small>
+            </div>
+            <img id="preview-img" src="" alt="preview" style="display:none">
+          </div>
+        </div>
+        <input type="file" id="file-input" accept="image/*" hidden>
+
+        <div class="mood-controls">
+          <button class="btn-primary" onclick="document.getElementById('file-input').click()">📁 Upload Photo</button>
+          <button class="btn-outline" id="webcam-btn" onclick="toggleWebcam()">📸 Use Webcam</button>
+        </div>
+
+        <div id="webcam-container" style="display:none">
+          <video id="webcam-video" autoplay playsinline></video>
+          <button class="btn-primary mt-8" onclick="captureWebcam()">📷 Capture</button>
+          <canvas id="webcam-canvas" hidden></canvas>
+        </div>
+
+        <button class="btn-analyze" id="analyze-btn" onclick="analyzeMood()" disabled>
+          🔍 Detect Mood
+        </button>
+      </div>
+
+      <!-- Result area -->
+      <div class="mood-result-card" id="mood-result" style="display:none">
+        <div class="result-emotion" id="result-emotion">😊</div>
+        <h3 id="result-label">Happy</h3>
+        <p id="result-message">You're feeling great today!</p>
+
+        <div class="confidence-bars" id="confidence-bars"></div>
+
+        <div class="suggestion-box" id="suggestion-box">
+          <h4>💡 Suggested Activities</h4>
+          <ul id="suggestion-list"></ul>
+        </div>
+
+        <button class="btn-sm mt-8" onclick="showPage('activities')">Try an Activity! 🎮</button>
+      </div>
+
+      <!-- Mood loading -->
+      <div class="mood-loading" id="mood-loading" style="display:none">
+        <div class="loading-spinner"></div>
+        <p>Analyzing your mood...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ACTIVITIES ─────────────────────────────────────────────────────────── -->
+  <section id="page-activities" class="page">
+    <div class="page-header">
+      <h2>🎮 Learning Activities</h2>
+      <p>Fun games to help you learn and grow!</p>
+    </div>
+
+    <div class="activity-tabs">
+      <button class="tab-btn active" data-tab="color">🎨 Color Match</button>
+      <button class="tab-btn" data-tab="shape">🔷 Shape Game</button>
+      <button class="tab-btn" data-tab="quiz">📝 Quiz</button>
+    </div>
+
+    <!-- Color Matching Game -->
+    <div class="activity-panel" id="tab-color">
+      <div class="game-card">
+        <div class="game-header">
+          <h3>🎨 Color Matching Game</h3>
+          <div class="game-score">Score: <span id="color-score">0</span> / <span id="color-total">10</span></div>
+        </div>
+        <div class="game-timer-bar"><div class="timer-fill" id="color-timer-fill"></div></div>
+        <div id="color-question" class="color-question">
+          <p class="game-prompt">Match the color name to the correct color!</p>
+          <div class="color-target" id="color-target-box"></div>
+          <p class="color-target-label" id="color-target-label"></p>
+          <div class="color-options" id="color-options"></div>
+        </div>
+        <div class="game-result" id="color-result" style="display:none">
+          <div class="result-big" id="color-result-emoji">🎉</div>
+          <h3 id="color-result-text">Great Job!</h3>
+          <p id="color-result-score"></p>
+          <button class="btn-primary" onclick="startColorGame()">Play Again!</button>
+        </div>
+        <button class="btn-primary mt-8" id="start-color-btn" onclick="startColorGame()">🎯 Start Game</button>
+      </div>
+    </div>
+
+    <!-- Shape Recognition Game -->
+    <div class="activity-panel" id="tab-shape" style="display:none">
+      <div class="game-card">
+        <div class="game-header">
+          <h3>🔷 Shape Recognition</h3>
+          <div class="game-score">Score: <span id="shape-score">0</span> / <span id="shape-total">10</span></div>
+        </div>
+        <div id="shape-question" class="shape-question">
+          <p class="game-prompt">What shape is this?</p>
+          <div class="shape-display" id="shape-display"></div>
+          <div class="shape-options" id="shape-options"></div>
+        </div>
+        <div class="game-result" id="shape-result" style="display:none">
+          <div class="result-big" id="shape-result-emoji">🎉</div>
+          <h3 id="shape-result-text">Amazing!</h3>
+          <p id="shape-result-score"></p>
+          <button class="btn-primary" onclick="startShapeGame()">Play Again!</button>
+        </div>
+        <button class="btn-primary mt-8" id="start-shape-btn" onclick="startShapeGame()">🎯 Start Game</button>
+      </div>
+      
+      <!-- Quiz -->
+    </div>
+    <div class="activity-panel" id="tab-quiz" style="display:none">
+      <div class="game-card">
+        <div class="game-header">
+          <h3>📝 Knowledge Quiz</h3>
+          <div class="game-score">Score: <span id="quiz-score">0</span> / <span id="quiz-total">10</span></div>
+        </div>
+        <div id="quiz-question" class="quiz-question">
+          <div class="question-number" id="quiz-q-num">Question 1 of 10</div>
+          <p class="quiz-prompt" id="quiz-prompt">Loading question...</p>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback" style="display:none"></div>
+        </div>
+        <div class="game-result" id="quiz-result" style="display:none">
+          <div class="result-big" id="quiz-result-emoji">🎉</div>
+          <h3 id="quiz-result-text">Well Done!</h3>
+          <p id="quiz-result-score"></p>
+          <button class="btn-primary" onclick="startQuiz()">Try Again!</button>
+        </div>
+        <button class="btn-primary mt-8" id="start-quiz-btn" onclick="startQuiz()">🎯 Start Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMMUNICATE ───────────────────────────────────────────────────────── -->
+  <section id="page-communicate" class="page">
+    <div class="page-header">
+      <h2>💬 Communication Helper</h2>
+      <p>Tap a card to express how you feel — your voice will be heard!</p>
+    </div>
+    <div class="comm-grid" id="comm-grid"></div>
+    <div class="comm-custom">
+      <h3>🎤 Say Something Custom</h3>
+      <div class="custom-input-row">
+        <input type="text" id="custom-speech" placeholder="Type what you want to say..." class="text-input">
+        <button class="btn-primary" onclick="speakCustom()">🔊 Speak</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARENT PANEL ──────────────────────────────────────────────────────── -->
+  <section id="page-parent" class="page">
+    <!-- Login form (shown when logged out) -->
+    <div id="parent-login" class="auth-container">
+      <div class="auth-card">
+        <div class="auth-icon">👨‍👩‍👧</div>
+        <h2>Parent / Caregiver Login</h2>
+        <p>Sign in to view your child's progress and mood reports</p>
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="login-tab-btn" onclick="switchAuthTab('login')">Sign In</button>
+          <button class="auth-tab" id="register-tab-btn" onclick="switchAuthTab('register')">Register</button>
+        </div>
+        <div id="login-form">
+          <input type="text" id="login-user" class="text-input" placeholder="Username" value="parent">
+          <input type="password" id="login-pass" class="text-input" placeholder="Password" value="demo123">
+          <div class="auth-hint">Demo: <b>parent</b> / <b>demo123</b></div>
+          <button class="btn-primary w-full" onclick="parentLogin()">Sign In →</button>
+        </div>
+        <div id="register-form" style="display:none">
+          <input type="text" id="reg-user" class="text-input" placeholder="Username">
+          <input type="password" id="reg-pass" class="text-input" placeholder="Password">
+          <input type="text" id="reg-child" class="text-input" placeholder="Child's name">
+          <button class="btn-primary w-full" onclick="parentRegister()">Create Account →</button>
+        </div>
+        <div class="auth-error" id="auth-error"></div>
+      </div>
+    </div>
+
+    <!-- Dashboard (shown when logged in) -->
+    <div id="parent-dashboard" style="display:none">
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2>👨‍👩‍👧 Parent Panel</h2>
+          <p>Monitoring: <b id="child-name-display">Child</b></p>
+        </div>
+        <button class="btn-outline" onclick="parentLogout()">Sign Out</button>
+      </div>
+
+      <!-- Parent KPIs -->
+      <div class="kpi-row">
+        <div class="kpi-card kpi-mood">
+          <div class="kpi-icon">😊</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Dominant Mood</div>
+            <div class="kpi-value" id="p-dominant-mood">—</div>
+          </div>
+        </div>
+        <div class="kpi-card kpi-score">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Mood Entries</div>
+            <div class="kpi-value" id="p-mood-count">—</div>
+          </div>
+        </div>
+        <div class="kpi-card kpi-activities">
+          <div class="kpi-icon">🎮</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Activities Done</div>
+            <div class="kpi-value" id="p-activity-count">—</div>
+          </div>
+        </div>
+        <div class="kpi-card kpi-streak">
+          <div class="kpi-icon">⭐</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Avg Score</div>
+            <div class="kpi-value" id="p-avg-score">—%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card chart-wide">
+          <div class="chart-header"><h3>📅 Weekly Mood Trend</h3></div>
+          <canvas id="parentMoodChart" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><h3>🎯 Activity Performance</h3></div>
+          <canvas id="parentActivityChart" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Suggestions based on mood -->
+      <div class="suggestion-panel" id="parent-suggestions">
+        <h3>💡 Caregiver Recommendations</h3>
+        <div id="parent-recs"></div>
+      </div>
+
+      <!-- Fear / concern system -->
+      <div class="table-card">
+        <div class="chart-header"><h3>⚠️ Mood Alerts</h3></div>
+        <div id="parent-alerts"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ TOAST NOTIFICATION ══════════════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+<script src="static/js/app.js"></script>
+</body>
+</html>

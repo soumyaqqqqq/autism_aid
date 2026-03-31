@@ -1,0 +1,23 @@
+{
+  "moods": [
+    {"_id": "1","emotion":"happy","confidences":{"happy":0.72,"sad":0.05,"angry":0.03,"neutral":0.1,"excited":0.08,"calm":0.02},"timestamp":"2025-01-15T08:30:00+00:00","user":"child"},
+    {"_id": "2","emotion":"neutral","confidences":{"happy":0.12,"sad":0.08,"angry":0.05,"neutral":0.62,"excited":0.07,"calm":0.06},"timestamp":"2025-01-16T09:15:00+00:00","user":"child"},
+    {"_id": "3","emotion":"sad","confidences":{"happy":0.06,"sad":0.68,"angry":0.07,"neutral":0.1,"excited":0.04,"calm":0.05},"timestamp":"2025-01-17T10:00:00+00:00","user":"child"},
+    {"_id": "4","emotion":"happy","confidences":{"happy":0.81,"sad":0.03,"angry":0.02,"neutral":0.07,"excited":0.05,"calm":0.02},"timestamp":"2025-01-18T08:45:00+00:00","user":"child"},
+    {"_id": "5","emotion":"excited","confidences":{"happy":0.2,"sad":0.02,"angry":0.03,"neutral":0.05,"excited":0.65,"calm":0.05},"timestamp":"2025-01-19T14:00:00+00:00","user":"child"},
+    {"_id": "6","emotion":"calm","confidences":{"happy":0.1,"sad":0.05,"angry":0.02,"neutral":0.15,"excited":0.08,"calm":0.6},"timestamp":"2025-01-20T11:30:00+00:00","user":"child"},
+    {"_id": "7","emotion":"angry","confidences":{"happy":0.04,"sad":0.12,"angry":0.71,"neutral":0.08,"excited":0.03,"calm":0.02},"timestamp":"2025-01-21T09:00:00+00:00","user":"child"},
+    {"_id": "8","emotion":"happy","confidences":{"happy":0.78,"sad":0.04,"angry":0.02,"neutral":0.09,"excited":0.05,"calm":0.02},"timestamp":"2025-01-22T10:20:00+00:00","user":"child"}
+  ],
+  "activities": [
+    {"_id": "a1","activity_type":"color_match","score":8,"total":10,"percentage":80.0,"timestamp":"2025-01-15T09:00:00+00:00","user":"child"},
+    {"_id": "a2","activity_type":"quiz","score":6,"total":10,"percentage":60.0,"timestamp":"2025-01-16T09:45:00+00:00","user":"child"},
+    {"_id": "a3","activity_type":"shape","score":7,"total":10,"percentage":70.0,"timestamp":"2025-01-17T10:30:00+00:00","user":"child"},
+    {"_id": "a4","activity_type":"color_match","score":9,"total":10,"percentage":90.0,"timestamp":"2025-01-18T09:15:00+00:00","user":"child"},
+    {"_id": "a5","activity_type":"quiz","score":8,"total":10,"percentage":80.0,"timestamp":"2025-01-19T14:30:00+00:00","user":"child"},
+    {"_id": "a6","activity_type":"shape","score":9,"total":10,"percentage":90.0,"timestamp":"2025-01-20T12:00:00+00:00","user":"child"},
+    {"_id": "a7","activity_type":"color_match","score":10,"total":10,"percentage":100.0,"timestamp":"2025-01-21T09:30:00+00:00","user":"child"},
+    {"_id": "a8","activity_type":"quiz","score":9,"total":10,"percentage":90.0,"timestamp":"2025-01-22T10:45:00+00:00","user":"child"}
+  ],
+  "users": []
+}
